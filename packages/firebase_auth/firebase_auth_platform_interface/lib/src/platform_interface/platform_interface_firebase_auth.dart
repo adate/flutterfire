@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'dart:async';
+
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:meta/meta.dart';
@@ -365,6 +366,17 @@ abstract class FirebaseAuthPlatform extends PlatformInterface {
     bool? forceRecaptchaFlow,
   }) {
     throw UnimplementedError('setSettings() is not implemented');
+  }
+
+  Future<String> getStoredOnymousUserToken(
+    String userAccessGroup,
+    String authority,
+  ) async {
+    throw UnimplementedError('getStoredOnymousUserToken() is not implemented');
+  }
+
+  Future<void> inheritStoredUser(String userAccessGroup) async {
+    throw UnimplementedError('inheritStoredUser() is not implemented');
   }
 
   /// Changes the current type of persistence on the current Auth instance for
