@@ -6,6 +6,7 @@ package io.flutter.plugins.firebase.auth;
 
 import static io.flutter.plugins.firebase.core.FlutterFirebasePluginRegistry.registerPlugin;
 
+import android.os.Bundle;
 import android.app.Activity;
 import android.net.Uri;
 import androidx.annotation.NonNull;
@@ -630,6 +631,31 @@ public class FlutterFirebaseAuthPlugin
         });
   }
 
+  private Task<Map<String, Object>> getStoredOnymousUserToken(Map<String, Object> arguments) {
+    return Tasks.call(
+      cachedThreadPool,
+      () -> {
+        String authority = (String) arguments.get(Constants.AUTHORITY);
+        Map<String, Object> output = new HashMap<>();
+
+        try {
+          Bundle bundle = getActivity().getApplication().getContentResolver().call(
+            Uri.parse("content://" + authority),
+            "",
+            null,
+            null
+          );
+          if (bundle == null) {
+            return output;
+          }
+          output.put(Constants.TOKEN, bundle.getString("onymous-user-token"));
+          return output;
+        } catch (RuntimeException e) {
+          return output;
+        }
+      });
+  }
+
   private Task<Map<String, Object>> signInAnonymously(Map<String, Object> arguments) {
     return Tasks.call(
         cachedThreadPool,
@@ -1055,6 +1081,9 @@ public class FlutterFirebaseAuthPlugin
         break;
       case "Auth#setSettings":
         methodCallTask = setSettings(call.arguments());
+        break;
+      case "Auth#getStoredOnymousUserToken":
+        methodCallTask = getStoredOnymousUserToken(call.arguments());
         break;
       case "Auth#signInAnonymously":
         methodCallTask = signInAnonymously(call.arguments());

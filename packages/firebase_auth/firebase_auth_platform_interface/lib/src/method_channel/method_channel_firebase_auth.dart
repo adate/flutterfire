@@ -402,6 +402,40 @@ class MethodChannelFirebaseAuth extends FirebaseAuthPlatform {
   }
 
   @override
+  Future<String> getStoredOnymousUserToken(
+    String userAccessGroup,
+    String authority,
+  ) async {
+    try {
+      Map<String, dynamic> data =
+          (await channel.invokeMapMethod<String, dynamic>(
+              'Auth#getStoredOnymousUserToken',
+              _withChannelDefaults({
+                'userAccessGroup': userAccessGroup,
+                'authority': authority,
+              })))!;
+
+      return data['token'] ?? '';
+    } catch (e) {
+      throw convertPlatformException(e);
+    }
+  }
+
+  @override
+  Future<void> inheritStoredUser(String userAccessGroup) async {
+    try {
+      await channel.invokeMapMethod<String, dynamic>(
+        'Auth#inheritStoredUser',
+        _withChannelDefaults({
+          'userAccessGroup': userAccessGroup,
+        }),
+      );
+    } catch (e) {
+      throw convertPlatformException(e);
+    }
+  }
+
+  @override
   Future<void> setPersistence(Persistence persistence) {
     throw UnimplementedError(
         'setPersistence() is only supported on web based platforms');

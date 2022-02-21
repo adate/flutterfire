@@ -411,6 +411,17 @@ class FirebaseAuth extends FirebasePluginPlatform {
         forceRecaptchaFlow: forceRecaptchaFlow);
   }
 
+  Future<String> getStoredOnymousUserToken(
+    String userAccessGroup,
+    String authority,
+  ) async {
+    return _delegate.getStoredOnymousUserToken(userAccessGroup, authority);
+  }
+
+  Future<void> inheritStoredUser(String userAccessGroup) async {
+    return _delegate.inheritStoredUser(userAccessGroup);
+  }
+
   /// Changes the current type of persistence on the current Auth instance for
   /// the currently saved Auth session and applies this type of persistence for
   /// future sign-in requests, including sign-in with redirect requests.

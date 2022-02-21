@@ -179,6 +179,10 @@ NSString *const kErrMsgInvalidCredential =
     [self setLanguageCode:call.arguments withMethodCallResult:methodCallResult];
   } else if ([@"Auth#setSettings" isEqualToString:call.method]) {
     [self setSettings:call.arguments withMethodCallResult:methodCallResult];
+  } else if ([@"Auth#getStoredOnymousUserToken" isEqualToString:call.method]) {
+    [self getStoredOnymousUserToken:call.arguments withMethodCallResult:methodCallResult];
+  } else if ([@"Auth#inheritStoredUser" isEqualToString:call.method]) {
+    [self inheritStoredUser:call.arguments withMethodCallResult:methodCallResult];
   } else if ([@"Auth#signInAnonymously" isEqualToString:call.method]) {
     [self signInAnonymously:call.arguments withMethodCallResult:methodCallResult];
   } else if ([@"Auth#signInWithCustomToken" isEqualToString:call.method]) {
@@ -481,6 +485,49 @@ NSString *const kErrMsgInvalidCredential =
 #endif
 
   result.success(nil);
+}
+
+- (void)getStoredOnymousUserToken:(id)arguments withMethodCallResult:(FLTFirebaseMethodCallResult *)result {
+  FIRAuth *auth = [self getFIRAuthFromArguments:arguments];
+  NSError *getStoredUserErrorPtr;
+  FIRUser *firUser = [auth getStoredUserForAccessGroup:arguments[@"userAccessGroup"] error:&getStoredUserErrorPtr];
+  if (getStoredUserErrorPtr != nil) {
+    result.error(nil, nil, nil, getStoredUserErrorPtr);
+  } else if (firUser == nil || firUser.anonymous) {
+    result.success(@{kArgumentToken : @""});
+  } else {
+    [firUser getIDTokenWithCompletion:^(NSString * _Nullable token, NSError * _Nullable error) {
+      if (error != nil) {
+        result.error(nil, nil, nil, error);
+        return;
+      }
+      result.success(@{kArgumentToken : token});
+    }];
+  }
+}
+
+- (void)inheritStoredUser:(id)arguments withMethodCallResult:(FLTFirebaseMethodCallResult *)result {
+  FIRAuth *auth = [self getFIRAuthFromArguments:arguments];
+  FIRUser *currentUser = auth.currentUser;
+  if (currentUser == nil) {
+    result.success(nil);
+    return;
+  }
+  NSString *userAccessGroup = arguments[@"userAccessGroup"];
+  BOOL useUserAccessGroupSuccessful;
+  NSError *useUserAccessGroupErrorPtr;
+  useUserAccessGroupSuccessful = [auth useUserAccessGroup:userAccessGroup error:&useUserAccessGroupErrorPtr];
+  if (!useUserAccessGroupSuccessful) {
+    result.error(nil, nil, nil, useUserAccessGroupErrorPtr);
+    return;
+  }
+  [auth updateCurrentUser:currentUser completion:^(NSError * _Nullable error) {
+    if (error != nil) {
+      result.error(nil, nil, nil, error);
+    } else {
+      result.success(nil);
+    }
+  }];
 }
 
 - (void)signInWithCustomToken:(id)arguments
