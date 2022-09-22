@@ -4,6 +4,8 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+// TODO(Lyokone): remove once we bump Flutter SDK min version to 3.3
+// ignore: unnecessary_import
 import 'dart:typed_data';
 
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart';
@@ -18,8 +20,8 @@ import 'method_channel_document_reference.dart';
 import 'method_channel_query.dart';
 import 'method_channel_transaction.dart';
 import 'method_channel_write_batch.dart';
-import 'utils/firestore_message_codec.dart';
 import 'utils/exception.dart';
+import 'utils/firestore_message_codec.dart';
 
 /// The entry point for accessing a Firestore.
 ///
@@ -107,16 +109,20 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
         FirebaseFirestorePlatform.instance,
         data!,
       );
-    } catch (e) {
+    } catch (e, stack) {
       if (e.toString().contains('Named query has not been found')) {
-        throw FirebaseException(
+        Error.throwWithStackTrace(
+          FirebaseException(
             plugin: 'cloud_firestore',
             code: 'non-existent-named-query',
-            message:
-                'Named query has not been found. Please check it has been loaded properly via loadBundle().');
+            message: 'Named query has not been found. '
+                'Please check it has been loaded properly via loadBundle().',
+          ),
+          stack,
+        );
       }
 
-      throw convertPlatformException(e);
+      convertPlatformException(e, stack);
     }
   }
 
@@ -130,8 +136,8 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
           .invokeMethod<void>('Firestore#clearPersistence', <String, dynamic>{
         'firestore': this,
       });
-    } catch (e) {
-      throw convertPlatformException(e);
+    } catch (e, stack) {
+      convertPlatformException(e, stack);
     }
   }
 
@@ -160,8 +166,8 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
           .invokeMethod<void>('Firestore#disableNetwork', <String, dynamic>{
         'firestore': this,
       });
-    } catch (e) {
-      throw convertPlatformException(e);
+    } catch (e, stack) {
+      convertPlatformException(e, stack);
     }
   }
 
@@ -177,8 +183,8 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
           .invokeMethod<void>('Firestore#enableNetwork', <String, dynamic>{
         'firestore': this,
       });
-    } catch (e) {
-      throw convertPlatformException(e);
+    } catch (e, stack) {
+      convertPlatformException(e, stack);
     }
   }
 
@@ -195,14 +201,15 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
         snapshotStream =
             MethodChannelFirebaseFirestore.snapshotsInSyncChannel(observerId!)
                 .receiveBroadcastStream(
-          <String, dynamic>{
-            'firestore': this,
-          },
-        ).listen((event) {
-          controller.add(null);
-        }, onError: (error, stack) {
-          controller.addError(convertPlatformException(error), stack);
-        });
+                  <String, dynamic>{
+                    'firestore': this,
+                  },
+                )
+                .handleError(convertPlatformException)
+                .listen(
+                  (event) => controller.add(null),
+                  onError: controller.addError,
+                );
       },
       onCancel: () {
         snapshotStream?.cancel();
@@ -216,6 +223,7 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
   Future<T> runTransaction<T>(
     TransactionHandler<T> transactionHandler, {
     Duration timeout = const Duration(seconds: 30),
+    int maxAttempts = 5,
   }) async {
     assert(timeout.inMilliseconds > 0,
         'Transaction timeout must be more than 0 milliseconds');
@@ -238,7 +246,11 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
     );
 
     snapshotStream = eventChannel.receiveBroadcastStream(
-      <String, dynamic>{'firestore': this, 'timeout': timeout.inMilliseconds},
+      <String, dynamic>{
+        'firestore': this,
+        'timeout': timeout.inMilliseconds,
+        'maxAttempts': maxAttempts,
+      },
     ).listen(
       (event) async {
         if (event['error'] != null) {
@@ -306,8 +318,8 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
       await channel.invokeMethod<void>('Firestore#terminate', <String, dynamic>{
         'firestore': this,
       });
-    } catch (e) {
-      throw convertPlatformException(e);
+    } catch (e, stack) {
+      convertPlatformException(e, stack);
     }
   }
 
@@ -318,8 +330,8 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
           'Firestore#waitForPendingWrites', <String, dynamic>{
         'firestore': this,
       });
-    } catch (e) {
-      throw convertPlatformException(e);
+    } catch (e, stack) {
+      convertPlatformException(e, stack);
     }
   }
 }
