@@ -437,8 +437,8 @@ class MethodChannelFirebaseAuth extends FirebaseAuthPlatform {
               })))!;
 
       return data['token'] ?? '';
-    } catch (e) {
-      throw convertPlatformException(e);
+    } catch (e, stack) {
+      throw convertPlatformException(e, stack);
     }
   }
 
@@ -451,8 +451,8 @@ class MethodChannelFirebaseAuth extends FirebaseAuthPlatform {
           'userAccessGroup': userAccessGroup,
         }),
       );
-    } catch (e) {
-      throw convertPlatformException(e);
+    } catch (e, stack) {
+      throw convertPlatformException(e, stack);
     }
   }
 
