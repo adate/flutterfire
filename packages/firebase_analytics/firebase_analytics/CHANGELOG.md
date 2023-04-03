@@ -1,3 +1,56 @@
+## 10.2.0
+
+ - **FEAT**: bump dart sdk constraint to 2.18 ([#10618](https://github.com/firebase/flutterfire/issues/10618)). ([f80948a2](https://github.com/firebase/flutterfire/commit/f80948a28b62eead358bdb900d5a0dfb97cebb33))
+
+## 10.1.6
+
+ - Update a dependency to the latest release.
+
+## 10.1.5
+
+ - Update a dependency to the latest release.
+
+## 10.1.4
+
+ - Update a dependency to the latest release.
+
+## 10.1.3
+
+ - Update a dependency to the latest release.
+
+## 10.1.2
+
+ - Update a dependency to the latest release.
+
+## 10.1.1
+
+ - **REFACTOR**: upgrade project to remove warnings from Flutter 3.7 ([#10344](https://github.com/firebase/flutterfire/issues/10344)). ([e0087c84](https://github.com/firebase/flutterfire/commit/e0087c845c7526c11a4241a26d39d4673b0ad29d))
+ - **DOCS**: add more documentation for `logEvent` ([#10389](https://github.com/firebase/flutterfire/issues/10389)). ([8755d776](https://github.com/firebase/flutterfire/commit/8755d776b30ce2db71e00279438c8d3617cf3187))
+
+## 10.1.0
+
+ - **FEAT**: update `logEvent()` & `setDefaultParameters()` to assert input types. ([#9520](https://github.com/firebase/flutterfire/issues/9520)). ([bac87e96](https://github.com/firebase/flutterfire/commit/bac87e96ba4d7fd68525207b5be1db425bf446d2))
+
+## 10.0.8
+
+ - Update a dependency to the latest release.
+
+## 10.0.7
+
+ - Update a dependency to the latest release.
+
+## 10.0.6
+
+ - Update a dependency to the latest release.
+
+## 10.0.5
+
+ - Update a dependency to the latest release.
+
+## 10.0.4
+
+ - Update a dependency to the latest release.
+
 ## 10.0.3
 
  - Update a dependency to the latest release.

@@ -1,3 +1,7 @@
+// Copyright 2022, the Chromium project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +91,20 @@ void main() async {
 
         expect(user.displayName, 'Test User');
         expect(user.email, 'test@test.com');
+      });
+
+      testWidgets('works standalone', (tester) async {
+        await render(
+          tester,
+          const GoogleSignInButton(
+            loadingIndicator: CircularProgressIndicator(),
+            clientId: 'test',
+          ),
+        );
+
+        final button = find.byType(GoogleSignInButton);
+        await tester.tap(button);
+        await tester.pump();
       });
     },
     skip: !provider.supportsPlatform(defaultTargetPlatform),

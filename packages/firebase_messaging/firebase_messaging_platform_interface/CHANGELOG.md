@@ -1,3 +1,55 @@
+## 4.3.0
+
+ - **FEAT**: bump dart sdk constraint to 2.18 ([#10618](https://github.com/firebase/flutterfire/issues/10618)). ([f80948a2](https://github.com/firebase/flutterfire/commit/f80948a28b62eead358bdb900d5a0dfb97cebb33))
+
+## 4.2.16
+
+ - Update a dependency to the latest release.
+
+## 4.2.15
+
+ - Update a dependency to the latest release.
+
+## 4.2.14
+
+ - Update a dependency to the latest release.
+
+## 4.2.13
+
+ - Update a dependency to the latest release.
+
+## 4.2.12
+
+ - Update a dependency to the latest release.
+
+## 4.2.11
+
+ - Update a dependency to the latest release.
+
+## 4.2.10
+
+ - Update a dependency to the latest release.
+
+## 4.2.9
+
+ - Update a dependency to the latest release.
+
+## 4.2.8
+
+ - Update a dependency to the latest release.
+
+## 4.2.7
+
+ - Update a dependency to the latest release.
+
+## 4.2.6
+
+ - Update a dependency to the latest release.
+
+## 4.2.5
+
+ - Update a dependency to the latest release.
+
 ## 4.2.4
 
  - **REFACTOR**: add `verify` to `QueryPlatform` and change internal `verifyToken` API to `verify` ([#9711](https://github.com/firebase/flutterfire/issues/9711)). ([c99a842f](https://github.com/firebase/flutterfire/commit/c99a842f3e3f5f10246e73f51530cc58c42b49a3))

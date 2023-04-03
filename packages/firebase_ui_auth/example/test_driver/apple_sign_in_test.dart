@@ -1,3 +1,7 @@
+// Copyright 2022, the Chromium project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -109,6 +113,18 @@ void main() async {
     },
     skip: !provider.supportsPlatform(defaultTargetPlatform),
   );
+
+  group('AppleProvider', () {
+    test('has default scopes', () {
+      final provider = AppleProvider();
+      expect(provider.firebaseAuthProvider.scopes, ['email']);
+    });
+
+    test('provides a way to pass custom scopes', () {
+      final provider = AppleProvider(scopes: {'email', 'name'});
+      expect(provider.firebaseAuthProvider.scopes, ['email', 'name']);
+    });
+  });
 }
 
 class MockListener<T> extends Mock {
@@ -144,14 +160,16 @@ class MockApp extends Mock implements FirebaseApp {}
 
 class MockAuth extends Mock implements FirebaseAuth {
   @override
-  Future<UserCredential> signInWithAuthProvider(Object provider) async {
+  Future<UserCredential> signInWithProvider(Object provider) async {
     return super.noSuchMethod(
       Invocation.method(#signInWithAuthProvider, [provider]),
-      returnValue: Future.delayed(const Duration(milliseconds: 50))
-          .then((_) => MockCredential()),
+      returnValue: Future.delayed(const Duration(milliseconds: 10)).then(
+        (_) => MockCredential(),
+      ),
       returnValueForMissingStub:
-          Future.delayed(const Duration(milliseconds: 50))
-              .then((_) => MockCredential()),
+          Future.delayed(const Duration(milliseconds: 10)).then(
+        (_) => MockCredential(),
+      ),
     );
   }
 }

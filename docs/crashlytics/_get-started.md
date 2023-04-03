@@ -53,7 +53,6 @@ first crash report to Firebase.
     flutter run
     ```
 
-
 ## **Step 2**: Configure crash handlers {: #configure-crash-handlers}
 
 You can automatically catch all errors that are thrown within the Flutter

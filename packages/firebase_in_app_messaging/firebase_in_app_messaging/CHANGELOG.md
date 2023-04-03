@@ -1,3 +1,59 @@
+## 0.7.1
+
+ - **FEAT**: bump dart sdk constraint to 2.18 ([#10618](https://github.com/firebase/flutterfire/issues/10618)). ([f80948a2](https://github.com/firebase/flutterfire/commit/f80948a28b62eead358bdb900d5a0dfb97cebb33))
+
+## 0.7.0+16
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+15
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+14
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+13
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+12
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+11
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+10
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+9
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+8
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+7
+
+ - **FIX**: in app messages were suppressed on iOS ([#9959](https://github.com/firebase/flutterfire/issues/9959)). ([929e3686](https://github.com/firebase/flutterfire/commit/929e3686b76c1ce57cf87f19498cd52fb577a8c6))
+
+## 0.7.0+6
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+5
+
+ - Update a dependency to the latest release.
+
+## 0.7.0+4
+
+ - Update a dependency to the latest release.
+
 ## 0.7.0+3
 
  - Update a dependency to the latest release.

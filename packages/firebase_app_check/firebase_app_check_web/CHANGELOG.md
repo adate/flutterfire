@@ -1,3 +1,55 @@
+## 0.0.8
+
+ - **FEAT**: bump dart sdk constraint to 2.18 ([#10618](https://github.com/firebase/flutterfire/issues/10618)). ([f80948a2](https://github.com/firebase/flutterfire/commit/f80948a28b62eead358bdb900d5a0dfb97cebb33))
+
+## 0.0.7+17
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+16
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+15
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+14
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+13
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+12
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+11
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+10
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+9
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+8
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+7
+
+ - Update a dependency to the latest release.
+
+## 0.0.7+6
+
+ - Update a dependency to the latest release.
+
 ## 0.0.7+5
 
  - Update a dependency to the latest release.

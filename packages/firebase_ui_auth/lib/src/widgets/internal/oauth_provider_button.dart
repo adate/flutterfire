@@ -1,4 +1,9 @@
+// Copyright 2022, the Chromium project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'package:firebase_auth/firebase_auth.dart' hide OAuthProvider;
+import 'package:firebase_ui_shared/firebase_ui_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
@@ -110,7 +115,8 @@ class OAuthProviderButton extends StatelessWidget {
           ),
           label: variant == OAuthButtonVariant.icon
               ? ''
-              : resolveProviderButtonLabel(provider.providerId, labels),
+              : provider.style.label ??
+                  resolveProviderButtonLabel(provider.providerId, labels),
           auth: auth,
         );
 

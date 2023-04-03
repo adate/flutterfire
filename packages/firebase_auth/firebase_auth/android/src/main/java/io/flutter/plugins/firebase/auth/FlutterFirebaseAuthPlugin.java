@@ -65,7 +65,6 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugins.firebase.core.FlutterFirebasePlugin;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -372,10 +371,14 @@ public class FlutterFirebaseAuthPlugin
       List<? extends UserInfo> userInfoList) {
     List<Map<String, Object>> output = new ArrayList<>();
 
-    Iterator<? extends UserInfo> iterator = new ArrayList<UserInfo>(userInfoList).iterator();
+    if (userInfoList == null) {
+      return output;
+    }
 
-    while (iterator.hasNext()) {
-      UserInfo userInfo = iterator.next();
+    for (UserInfo userInfo : new ArrayList<UserInfo>(userInfoList)) {
+      if (userInfo == null) {
+        continue;
+      }
       if (!FirebaseAuthProvider.PROVIDER_ID.equals(userInfo.getProviderId())) {
         output.add(parseUserInfo(userInfo));
       }
@@ -1848,7 +1851,9 @@ public class FlutterFirebaseAuthPlugin
   private void removeEventListeners() {
     for (EventChannel eventChannel : streamHandlers.keySet()) {
       StreamHandler streamHandler = streamHandlers.get(eventChannel);
-      streamHandler.onCancel(null);
+      if (streamHandler != null) {
+        streamHandler.onCancel(null);
+      }
       eventChannel.setStreamHandler(null);
     }
     streamHandlers.clear();

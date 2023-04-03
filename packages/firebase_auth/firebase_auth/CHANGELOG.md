@@ -1,3 +1,77 @@
+## 4.4.0
+
+ - **FEAT**(auth,ios): automatically save the Apple Sign In display name ([#10652](https://github.com/firebase/flutterfire/issues/10652)). ([257f1ffb](https://github.com/firebase/flutterfire/commit/257f1ffbce7abd458df91d8e4b6422d83b5b849f))
+ - **FEAT**: bump dart sdk constraint to 2.18 ([#10618](https://github.com/firebase/flutterfire/issues/10618)). ([f80948a2](https://github.com/firebase/flutterfire/commit/f80948a28b62eead358bdb900d5a0dfb97cebb33))
+
+## 4.3.0
+
+ - **FIX**(auth): fix an issue where unenroll would not throw a FirebaseException ([#10572](https://github.com/firebase/flutterfire/issues/10572)). ([8dba33e1](https://github.com/firebase/flutterfire/commit/8dba33e1a95f03d70d527885aa58ce23622e359f))
+ - **FEAT**(auth): improve error handling when Email enumeration feature is on ([#10591](https://github.com/firebase/flutterfire/issues/10591)). ([ff083025](https://github.com/firebase/flutterfire/commit/ff083025b724d683cc3a9ed5f4a4987c43663589))
+
+## 4.2.10
+
+ - **FIX**(auth,web): fix currentUser being null when using emulator or named instance ([#10565](https://github.com/firebase/flutterfire/issues/10565)). ([11e8644d](https://github.com/firebase/flutterfire/commit/11e8644df402a5abbb0d0c37714879272dec024c))
+
+## 4.2.9
+
+ - Update a dependency to the latest release.
+
+## 4.2.8
+
+ - Update a dependency to the latest release.
+
+## 4.2.7
+
+ - Update a dependency to the latest release.
+
+## 4.2.6
+
+ - **REFACTOR**: upgrade project to remove warnings from Flutter 3.7 ([#10344](https://github.com/firebase/flutterfire/issues/10344)). ([e0087c84](https://github.com/firebase/flutterfire/commit/e0087c845c7526c11a4241a26d39d4673b0ad29d))
+
+## 4.2.5
+
+ - **FIX**: fix a null pointer exception that could occur when removing an even listener ([#10210](https://github.com/firebase/flutterfire/issues/10210)). ([72d2e973](https://github.com/firebase/flutterfire/commit/72d2e97363d89d716963dd224a2b9578ba446624))
+
+## 4.2.4
+
+ - Update a dependency to the latest release.
+
+## 4.2.3
+
+ - Update a dependency to the latest release.
+
+## 4.2.2
+
+ - Update a dependency to the latest release.
+
+## 4.2.1
+
+ - Update a dependency to the latest release.
+
+## 4.2.0
+
+ - **FEAT**: improve error message when user cancels a sign in with a provider ([#10060](https://github.com/firebase/flutterfire/issues/10060)). ([6631da6b](https://github.com/firebase/flutterfire/commit/6631da6b6b165a0c1e3260d744df1d60f3c7abe0))
+
+## 4.1.5
+
+ - **FIX**: Apple Sign In on a secondary app doesnt sign in the correct Firebase Auth instance ([#10018](https://github.com/firebase/flutterfire/issues/10018)). ([f746d5da](https://github.com/firebase/flutterfire/commit/f746d5da0c784e28f08b9fcedfce18933a9e448e))
+
+## 4.1.4
+
+ - **FIX**: tentative fix for null pointer exception in `parseUserInfoList` ([#9960](https://github.com/firebase/flutterfire/issues/9960)). ([dad17407](https://github.com/firebase/flutterfire/commit/dad1740792b893920867528039a9c54398ae7e3e))
+
+## 4.1.3
+
+ - **FIX**: fix reauthenticateWithProvider on iOS with Sign In With Apple that would throw a linked exception ([#9919](https://github.com/firebase/flutterfire/issues/9919)). ([7318a8f3](https://github.com/firebase/flutterfire/commit/7318a8f32de07bd47026d3e07b80b4bab5df1e6a))
+
+## 4.1.2
+
+ - Update a dependency to the latest release.
+
+## 4.1.1
+
+ - Update a dependency to the latest release.
+
 ## 4.1.0
 
  - **REFACTOR**: add `verify` to `QueryPlatform` and change internal `verifyToken` API to `verify` ([#9711](https://github.com/firebase/flutterfire/issues/9711)). ([c99a842f](https://github.com/firebase/flutterfire/commit/c99a842f3e3f5f10246e73f51530cc58c42b49a3))

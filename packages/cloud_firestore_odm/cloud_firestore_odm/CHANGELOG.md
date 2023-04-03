@@ -1,3 +1,63 @@
+## 1.0.0-dev.53
+
+ - **FEAT**: bump dart sdk constraint to 2.18 ([#10618](https://github.com/firebase/flutterfire/issues/10618)). ([f80948a2](https://github.com/firebase/flutterfire/commit/f80948a28b62eead358bdb900d5a0dfb97cebb33))
+
+## 1.0.0-dev.52
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.51
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.50
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.49
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.48
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.47
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.46
+
+ - **REFACTOR**: upgrade project to remove warnings from Flutter 3.7 ([#10344](https://github.com/firebase/flutterfire/issues/10344)). ([e0087c84](https://github.com/firebase/flutterfire/commit/e0087c845c7526c11a4241a26d39d4673b0ad29d))
+
+## 1.0.0-dev.45
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.44
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.43
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.42
+
+ - **FIX**: a bug where the ODM does not respect JSON case renaming ([#9988](https://github.com/firebase/flutterfire/issues/9988)). ([02d394b6](https://github.com/firebase/flutterfire/commit/02d394b6b0917f7dc98711b9939630c0b423ed63))
+
+## 1.0.0-dev.41
+
+ - Update a dependency to the latest release.
+
+## 1.0.0-dev.40
+
+ - **FIX**: Improve error handling if a collection and the associated model are defined in separate files. ([#9827](https://github.com/firebase/flutterfire/issues/9827)). ([294e1085](https://github.com/firebase/flutterfire/commit/294e1085ae7af92573657489b78ae0a82ab5e4b4))
+
+## 1.0.0-dev.39
+
+ - Update a dependency to the latest release.
+
 ## 1.0.0-dev.38
 
  - Update a dependency to the latest release.

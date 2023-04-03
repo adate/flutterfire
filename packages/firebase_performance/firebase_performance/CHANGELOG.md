@@ -1,3 +1,60 @@
+## 0.9.1
+
+ - **FEAT**: bump dart sdk constraint to 2.18 ([#10618](https://github.com/firebase/flutterfire/issues/10618)). ([f80948a2](https://github.com/firebase/flutterfire/commit/f80948a28b62eead358bdb900d5a0dfb97cebb33))
+
+## 0.9.0+16
+
+ - Update a dependency to the latest release.
+
+## 0.9.0+15
+
+ - **FIX**(performance,android): fix NullPointerException errors and remove suppressed warnings ([#10560](https://github.com/firebase/flutterfire/issues/10560)). ([a54d33df](https://github.com/firebase/flutterfire/commit/a54d33df6fdc4ccb3ef0b9e955e502b750aa592b))
+
+## 0.9.0+14
+
+ - Update a dependency to the latest release.
+
+## 0.9.0+13
+
+ - Update a dependency to the latest release.
+
+## 0.9.0+12
+
+ - Update a dependency to the latest release.
+
+## 0.9.0+11
+
+ - **REFACTOR**: replace deprecated API: `Tasks.call()` ([#10361](https://github.com/firebase/flutterfire/issues/10361)). ([22407847](https://github.com/firebase/flutterfire/commit/2240784774d6673319fdb32a90c52beb015d3714))
+ - **FIX**: fix a crash that could occur with httpMetricStart when disabling collection ([#10392](https://github.com/firebase/flutterfire/issues/10392)). ([db67962b](https://github.com/firebase/flutterfire/commit/db67962b50269de7ebacc496e163fb8bb6608a12))
+
+## 0.9.0+10
+
+ - **FIX**: fix a crash that would occur when creating a trace with performance collection disabled ([#10243](https://github.com/firebase/flutterfire/issues/10243)). ([0a15ecbe](https://github.com/firebase/flutterfire/commit/0a15ecbe31a5730a6f8be2218c756a5d167e5bbd))
+
+## 0.9.0+9
+
+ - **REFACTOR**: refactor underlying implementation for the "handler system" so the handlers are generated on native side ([#9334](https://github.com/firebase/flutterfire/issues/9334)). ([08a4be6c](https://github.com/firebase/flutterfire/commit/08a4be6c0e86a3288bb6fcafd301f1519b7915ba))
+
+## 0.9.0+8
+
+ - Update a dependency to the latest release.
+
+## 0.9.0+7
+
+ - Update a dependency to the latest release.
+
+## 0.9.0+6
+
+ - Update a dependency to the latest release.
+
+## 0.9.0+5
+
+ - Update a dependency to the latest release.
+
+## 0.9.0+4
+
+ - Update a dependency to the latest release.
+
 ## 0.9.0+3
 
  - **REFACTOR**: add `verify` to `QueryPlatform` and change internal `verifyToken` API to `verify` ([#9711](https://github.com/firebase/flutterfire/issues/9711)). ([c99a842f](https://github.com/firebase/flutterfire/commit/c99a842f3e3f5f10246e73f51530cc58c42b49a3))

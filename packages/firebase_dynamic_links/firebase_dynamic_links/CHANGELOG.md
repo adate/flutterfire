@@ -1,3 +1,63 @@
+## 5.1.0
+
+ - **FEAT**: bump dart sdk constraint to 2.18 ([#10618](https://github.com/firebase/flutterfire/issues/10618)). ([f80948a2](https://github.com/firebase/flutterfire/commit/f80948a28b62eead358bdb900d5a0dfb97cebb33))
+
+## 5.0.17
+
+ - Update a dependency to the latest release.
+
+## 5.0.16
+
+ - Update a dependency to the latest release.
+
+## 5.0.15
+
+ - Update a dependency to the latest release.
+
+## 5.0.14
+
+ - Update a dependency to the latest release.
+
+## 5.0.13
+
+ - Update a dependency to the latest release.
+
+## 5.0.12
+
+ - Update a dependency to the latest release.
+
+## 5.0.11
+
+ - Update a dependency to the latest release.
+
+## 5.0.10
+
+ - Update a dependency to the latest release.
+
+## 5.0.9
+
+ - **FIX**: fix an issue where the status of the dynamic link was not properly reported ([#10100](https://github.com/firebase/flutterfire/issues/10100)). ([521c3375](https://github.com/firebase/flutterfire/commit/521c337570f6daeffc569894218bd5d682d40072))
+
+## 5.0.8
+
+ - Update a dependency to the latest release.
+
+## 5.0.7
+
+ - Update a dependency to the latest release.
+
+## 5.0.6
+
+ - Update a dependency to the latest release.
+
+## 5.0.5
+
+ - Update a dependency to the latest release.
+
+## 5.0.4
+
+ - Update a dependency to the latest release.
+
 ## 5.0.3
 
  - Update a dependency to the latest release.

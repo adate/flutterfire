@@ -1,3 +1,7 @@
+// Copyright 2022, the Chromium project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +89,7 @@ class PhoneInput extends StatefulWidget {
 
   /// An initial country code that should be selected in the country code
   /// picker.
-  final String initialCountryCode;
+  final String? initialCountryCode;
 
   /// Returns a phone number from the [PhoneInput] that was provided a [key].
   static String? getPhoneNumber(GlobalKey<PhoneInputState> key) {
@@ -101,7 +105,7 @@ class PhoneInput extends StatefulWidget {
   /// {@macro ui.auth.widgets.phone_input}
   const PhoneInput({
     Key? key,
-    required this.initialCountryCode,
+    this.initialCountryCode,
     this.onSubmit,
   }) : super(key: key);
 
@@ -283,49 +287,52 @@ class PhoneInputState extends State<PhoneInput> {
           const SizedBox(height: 16),
           Directionality(
             textDirection: TextDirection.ltr,
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 90,
-                  child: UniversalTextFormField(
-                    autofillHints: const [
-                      AutofillHints.telephoneNumberCountryCode
-                    ],
-                    controller: countryController,
-                    prefix: const Text('+'),
-                    placeholder: l.countryCode,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                    keyboardType: TextInputType.phone,
-                    validator: NotEmpty('').validate,
-                    onSubmitted: (_) {
-                      numberFocusNode.requestFocus();
-                    },
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 90,
+                    child: UniversalTextFormField(
+                      autofillHints: const [
+                        AutofillHints.telephoneNumberCountryCode
+                      ],
+                      controller: countryController,
+                      prefix: const Text('+'),
+                      placeholder: l.countryCode,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
+                      keyboardType: TextInputType.phone,
+                      validator: NotEmpty('').validate,
+                      onSubmitted: (_) {
+                        numberFocusNode.requestFocus();
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: UniversalTextFormField(
-                    autofillHints: const [
-                      AutofillHints.telephoneNumberNational
-                    ],
-                    autofocus: true,
-                    focusNode: numberFocusNode,
-                    controller: numberController,
-                    placeholder: l.phoneInputLabel,
-                    validator: Validator.validateAll([
-                      NotEmpty(l.phoneNumberIsRequiredErrorText),
-                      PhoneValidator(l.phoneNumberInvalidErrorText),
-                    ]),
-                    onSubmitted: _onSubmitted,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                    keyboardType: TextInputType.phone,
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: UniversalTextFormField(
+                      autofillHints: const [
+                        AutofillHints.telephoneNumberNational
+                      ],
+                      autofocus: true,
+                      focusNode: numberFocusNode,
+                      controller: numberController,
+                      placeholder: l.phoneInputLabel,
+                      validator: Validator.validateAll([
+                        NotEmpty(l.phoneNumberIsRequiredErrorText),
+                        PhoneValidator(l.phoneNumberInvalidErrorText),
+                      ]),
+                      onSubmitted: _onSubmitted,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
+                      keyboardType: TextInputType.phone,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

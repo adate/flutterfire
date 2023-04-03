@@ -122,6 +122,9 @@ abstract class FirebaseRemoteConfigPlatform extends PlatformInterface {
   /// Performs a fetch and activate operation, as a convenience.
   ///
   /// Returns [bool] in the same way that is done for [activate].
+  /// A [FirebaseException] maybe thrown with the following error code:
+  /// - **forbidden**:
+  ///  - Thrown if the Google Cloud Platform Firebase Remote Config API is disabled
   Future<bool> fetchAndActivate() {
     throw UnimplementedError('fetchAndActivate() is not implemented');
   }
@@ -164,5 +167,10 @@ abstract class FirebaseRemoteConfigPlatform extends PlatformInterface {
   /// Sets the default parameter values for the current instance.
   Future<void> setDefaults(Map<String, dynamic> defaultParameters) {
     throw UnimplementedError('setDefaults() is not implemented');
+  }
+
+  /// Get a [Stream] of [RemoteConfigUpdate]s.
+  Stream<RemoteConfigUpdate> get onConfigUpdated {
+    throw UnimplementedError('onConfigUpdated getter not implemented');
   }
 }

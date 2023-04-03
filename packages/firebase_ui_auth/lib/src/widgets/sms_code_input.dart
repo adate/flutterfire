@@ -1,8 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// Copyright 2022, the Chromium project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'package:firebase_auth/firebase_auth.dart' show PhoneAuthCredential;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import '../widgets/internal/universal_text_form_field.dart';
 
 class _NumberDecorationPainter extends BoxPainter {
@@ -86,7 +91,7 @@ class _NumberSlotState extends State<_NumberSlot>
   Widget build(BuildContext context) {
     final inputBorder = Theme.of(context).inputDecorationTheme.border;
     final primaryColor = Theme.of(context).colorScheme.primary;
-    final errorColor = Theme.of(context).errorColor;
+    final errorColor = Theme.of(context).colorScheme.error;
 
     final color = hasError ? errorColor : primaryColor;
 

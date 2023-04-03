@@ -18,7 +18,7 @@ First, we define the root route that checks for authentication state and renders
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    const providers = [EmailProvider()];
+    const providers = [EmailAuthProvider()];
 
     return MaterialApp(
       initialRoute: FirebaseAuth.instance.currentUser == null ? '/sign-in' : '/profile',
@@ -68,7 +68,7 @@ navigate to a named route, provide the `actions` list with a `ForgotPasswordActi
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    const providers = [EmailProvider()];
+    const providers = [EmailAuthProvider()];
 
     return MaterialApp(
       initialRoute: FirebaseAuth.instance.currentUser == null ? '/sign-in' : '/profile',
@@ -98,9 +98,7 @@ To learn more about the available actions, check out the [FirebaseUIActions API 
 
 ## Other topics
 
-## Other topics
-
-- [EmaiAuthProvider](./providers/email.md) - allows registering and signing using email and password.
+- [EmailAuthProvider](./providers/email.md) - allows registering and signing using email and password.
 - [EmailLinkAuthProvider](./providers/email-link.md) - allows registering and signing using a link sent to email.
 - [PhoneAuthProvider](./providers/phone.md) - allows registering and signing using a phone number
 - [UniversalEmailSignInProvider](./providers/universal-email-sign-in.md) - gets all connected auth providers for a given email.
