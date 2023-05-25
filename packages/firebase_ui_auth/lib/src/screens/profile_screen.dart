@@ -11,19 +11,18 @@ import 'package:firebase_auth/firebase_auth.dart'
         PhoneAuthCredential,
         PhoneMultiFactorGenerator,
         User;
-import 'package:firebase_ui_shared/firebase_ui_shared.dart';
-import 'package:flutter/cupertino.dart' hide Title;
-import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
-import 'package:flutter/material.dart' hide Title;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:firebase_ui_oauth/firebase_ui_oauth.dart'
     hide OAuthProviderButtonBase;
+import 'package:firebase_ui_shared/firebase_ui_shared.dart';
+import 'package:flutter/cupertino.dart' hide Title;
+import 'package:flutter/material.dart' hide Title;
 import 'package:flutter/services.dart';
 
 import '../widgets/internal/rebuild_scope.dart';
 import '../widgets/internal/subtitle.dart';
 import '../widgets/internal/universal_icon_button.dart';
-
 import 'internal/multi_provider_screen.dart';
 
 class _AvailableProvidersRow extends StatefulWidget {
@@ -33,11 +32,10 @@ class _AvailableProvidersRow extends StatefulWidget {
   final VoidCallback onProviderLinked;
 
   const _AvailableProvidersRow({
-    Key? key,
     this.auth,
     required this.providers,
     required this.onProviderLinked,
-  }) : super(key: key);
+  });
 
   @override
   State<_AvailableProvidersRow> createState() => _AvailableProvidersRowState();
@@ -154,10 +152,9 @@ class _EditButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const _EditButton({
-    Key? key,
     required this.isEditing,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -181,11 +178,10 @@ class _LinkedProvidersRow extends StatefulWidget {
   final VoidCallback onProviderUnlinked;
 
   const _LinkedProvidersRow({
-    Key? key,
     this.auth,
     required this.providers,
     required this.onProviderUnlinked,
-  }) : super(key: key);
+  });
 
   @override
   State<_LinkedProvidersRow> createState() => _LinkedProvidersRowState();
@@ -236,8 +232,10 @@ class _LinkedProvidersRowState extends State<_LinkedProvidersRow> {
     const animationDuration = Duration(milliseconds: 150);
     const curve = Curves.easeOut;
 
-    void unlink() {
-      _unlinkProvider(context, providerId);
+    VoidCallback? unlink;
+
+    if (isEditing) {
+      unlink = () => _unlinkProvider(context, providerId);
     }
 
     return Stack(
@@ -246,11 +244,9 @@ class _LinkedProvidersRowState extends State<_LinkedProvidersRow> {
           width: size,
           height: size,
           child: unlinkingProvider == providerId
-              ? Center(
-                  child: LoadingIndicator(
-                    size: size - (size / 4),
-                    borderWidth: 1,
-                  ),
+              ? LoadingIndicator(
+                  size: size - (size / 4),
+                  borderWidth: 1,
                 )
               : Icon(providerIcon(context, providerId)),
         ),
@@ -259,28 +255,22 @@ class _LinkedProvidersRowState extends State<_LinkedProvidersRow> {
             duration: animationDuration,
             opacity: isEditing ? 1 : 0,
             curve: curve,
-            child: GestureDetector(
-              onTap: unlink,
-              child: SizedBox(
-                width: size,
-                height: size,
-                child: Align(
-                  alignment: Alignment.topRight,
+            child: SizedBox(
+              width: size,
+              height: size,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: unlink,
                   child: Transform.translate(
-                    offset: const Offset(14, -12),
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: unlink,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Icon(
-                          isCupertino
-                              ? CupertinoIcons.minus_circle_fill
-                              : Icons.remove_circle,
-                          size: 20,
-                          color: Theme.of(context).colorScheme.error,
-                        ),
-                      ),
+                    offset: const Offset(6, -4),
+                    child: Icon(
+                      isCupertino
+                          ? CupertinoIcons.minus_circle_fill
+                          : Icons.remove_circle,
+                      size: 20,
+                      color: Theme.of(context).colorScheme.error,
                     ),
                   ),
                 ),
@@ -332,10 +322,9 @@ class _EmailVerificationBadge extends StatefulWidget {
   final FirebaseAuth auth;
   final ActionCodeSettings? actionCodeSettings;
   const _EmailVerificationBadge({
-    Key? key,
     required this.auth,
     this.actionCodeSettings,
-  }) : super(key: key);
+  });
 
   @override
   State<_EmailVerificationBadge> createState() =>
@@ -401,9 +390,9 @@ class _EmailVerificationBadgeState extends State<_EmailVerificationBadge> {
           ),
           const SizedBox(height: 16),
           if (state == EmailVerificationState.pending)
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 LoadingIndicator(size: 16, borderWidth: 0.5),
                 SizedBox(width: 16),
                 Text('Waiting for email verification'),
@@ -458,12 +447,11 @@ class _MFABadge extends StatelessWidget {
   final List<AuthProvider> providers;
 
   const _MFABadge({
-    Key? key,
     required this.enrolled,
     required this.auth,
     required this.onToggled,
     required this.providers,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -496,12 +484,11 @@ class _MFAToggle extends StatefulWidget {
   final List<AuthProvider> providers;
 
   const _MFAToggle({
-    Key? key,
     required this.enrolled,
     required this.auth,
     required this.onToggled,
     required this.providers,
-  }) : super(key: key);
+  });
 
   @override
   State<_MFAToggle> createState() => _MFAToggleState();
@@ -719,9 +706,9 @@ class ProfileScreen extends MultiProviderScreen {
   final bool showMFATile;
 
   const ProfileScreen({
-    Key? key,
-    FirebaseAuth? auth,
-    List<AuthProvider>? providers,
+    super.key,
+    super.auth,
+    super.providers,
     this.avatarPlaceholderColor,
     this.avatarShape,
     this.avatarSize,
@@ -731,7 +718,7 @@ class ProfileScreen extends MultiProviderScreen {
     this.cupertinoNavigationBar,
     this.actionCodeSettings,
     this.showMFATile = false,
-  }) : super(key: key, providers: providers, auth: auth);
+  });
 
   Future<bool> _reauthenticate(BuildContext context) {
     final l = FirebaseUILocalizations.labelsOf(context);

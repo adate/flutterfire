@@ -11,11 +11,10 @@ class _LoadingButtonContent extends StatelessWidget {
   final bool isLoading;
   final Color? color;
   const _LoadingButtonContent({
-    Key? key,
     required this.label,
     required this.isLoading,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +32,16 @@ class _LoadingButtonContent extends StatelessWidget {
     }
 
     if (isLoading) {
-      child = LoadingIndicator(
-        size: isCupertino ? 20 : 16,
-        borderWidth: 1,
-        color: color,
+      child = Stack(
+        alignment: Alignment.center,
+        children: [
+          Opacity(opacity: 0, child: child),
+          LoadingIndicator(
+            size: isCupertino ? 20 : 16,
+            borderWidth: 1,
+            color: color,
+          ),
+        ],
       );
     }
 
@@ -77,7 +82,7 @@ class LoadingButton extends StatelessWidget {
   final ButtonVariant variant;
 
   const LoadingButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.onTap,
     this.isLoading = false,
@@ -87,18 +92,23 @@ class LoadingButton extends StatelessWidget {
     this.cupertinoColor,
     this.labelColor,
     this.variant = ButtonVariant.outlined,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isMaterial3 = theme.useMaterial3;
+    final isCupertino = CupertinoUserInterfaceLevel.maybeOf(context) != null;
 
     final resolvedColor = variant == ButtonVariant.filled && !isMaterial3
         ? theme.colorScheme.onPrimary
         : null;
 
-    final contentColor = labelColor ?? resolvedColor;
+    var contentColor = labelColor ?? resolvedColor;
+
+    if (isCupertino && variant == ButtonVariant.filled) {
+      contentColor = contentColor ?? CupertinoColors.white;
+    }
 
     final content = _LoadingButtonContent(
       label: label,
